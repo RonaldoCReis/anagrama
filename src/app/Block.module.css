@@ -1,15 +1,20 @@
 .block {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-  color: #1c2227;
+  color: var(--black);
   font-size: 3rem;
   text-transform: uppercase;
-  margin: 1rem;
-  background: #ddd;
+  margin: var(--spacing) 0;
+  background: var(--white);
   width: 5rem;
   height: 5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 0.1rem;
+}
+
+.placeholder {
+  opacity: 0;
+  order: -1;
 }

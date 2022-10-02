@@ -1,3 +1,9 @@
+:root {
+  --black: #1c2227;
+  --white: #ddd;
+  --spacing: 0.8rem;
+}
+
 * {
   margin: 0;
   padding: 0;

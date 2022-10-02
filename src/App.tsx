@@ -1,11 +1,25 @@
 import './App.css';
 import styles from './App.module.css';
-import Row from './app/Row';
+import Column from './app/Column';
 
+const words = ['banco', 'termo', 'risco', 'ficar', 'marca'];
+let anagrams: string[] = new Array(5).fill('');
+
+words.forEach((word) => {
+  const letters = word.split('');
+  letters.forEach((letter, index) => {
+    if (!anagrams[index].includes(letter)) anagrams[index] += letter;
+    else anagrams[index] += '$';
+  });
+});
+
+console.log(anagrams);
 function App() {
   return (
     <main className={styles.main}>
-      <Row letters={['a', 'b', 'c', 'd', 'e']} />
+      {anagrams.map((anagram) => (
+        <Column key={anagram} word={anagram} />
+      ))}
     </main>
   );
 }

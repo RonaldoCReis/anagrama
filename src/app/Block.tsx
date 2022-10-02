@@ -6,7 +6,11 @@ type proptypes = {
 };
 
 const Block = ({ letter }: proptypes) => {
-  return <div className={styles.block}>{letter}</div>;
+  return (
+    <div className={`${styles.block} ${letter === '$' && styles.placeholder}`}>
+      {letter}
+    </div>
+  );
 };
 
 export default Block;
