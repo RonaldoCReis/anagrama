@@ -3,7 +3,7 @@ import './App.css';
 import styles from './App.module.css';
 import Column from './app/Column';
 
-const words = ['banco', 'termo', 'risco', 'ficar', 'marca'];
+const words = ['banco', 'risco', 'pinta', 'poste', 'beber'];
 let anagrams: string[] = new Array(5).fill('');
 
 words.forEach((word) => {
@@ -20,8 +20,29 @@ function App() {
   const [selectedWord, setSelectedWord] = React.useState<string[]>(
     new Array(5).fill('')
   );
+  const [doneLetters, setDoneLetters] = React.useState('');
+  const [doneWords, setDoneWords] = React.useState([]);
+
+  function submitTry(): void {
+    const finalWord = selectedWord.join('');
+    words.forEach((word) => {
+      if (word === finalWord) {
+        setDoneLetters(doneLetters + word);
+        // setDoneWords([...doneWords])
+      }
+      console.log(doneLetters);
+    });
+  }
+
+  React.useEffect(() => {
+    if (selectedWord.join('').length === 5) {
+      submitTry();
+    }
+  }, [selectedWord]);
   return (
     <form className={styles.form}>
+      {/* <button className={styles.button}>Enviar</button> */}
+
       <main className={styles.main}>
         {anagrams.map((anagram, index) => (
           <Column
@@ -30,10 +51,10 @@ function App() {
             word={anagram}
             setSelectedWord={setSelectedWord}
             selectedWord={selectedWord}
+            doneLetters={doneLetters}
           />
         ))}
       </main>
-      {/* <button className={styles.button}>Enviar</button> */}
     </form>
   );
 }

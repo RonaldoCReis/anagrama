@@ -1,12 +1,14 @@
 import React from 'react';
 import Block from './Block';
 import styles from './Column.module.css';
+import blockStyle from './Block.module.css';
 
 type proptypes = {
   word: string;
   setSelectedWord: Function;
   selectedWord: string[];
   columnIndex: number;
+  doneLetters: string;
 };
 
 const Column = ({
@@ -14,6 +16,7 @@ const Column = ({
   setSelectedWord,
   columnIndex,
   selectedWord,
+  doneLetters,
 }: proptypes) => {
   const [activeLetter, setActiveLetter] = React.useState<null | string>(null);
   // let letters: string[];
@@ -38,22 +41,36 @@ const Column = ({
   }, []);
 
   React.useEffect(() => {
+    setActiveLetter('');
+  }, [doneLetters]);
+
+  React.useEffect(() => {
+    const array = [...selectedWord];
     if (activeLetter) {
-      const array = [...selectedWord];
       array[columnIndex] = activeLetter;
-      setSelectedWord(array);
-      console.log(array, columnIndex);
+    } else {
+      array[columnIndex] = '';
     }
+    setSelectedWord(array);
   }, [activeLetter, setSelectedWord]);
 
   return (
     <div className={styles.Column}>
+      <div
+        className={`${blockStyle.block} ${blockStyle.displayBlock} ${
+          activeLetter && doneLetters.includes(activeLetter) && blockStyle.done
+        }`}
+        onClick={() => setActiveLetter('')}
+      >
+        {activeLetter}
+      </div>
       {letters.map((letter, index) => (
         <Block
           setActiveLetter={setActiveLetter}
           activeLetter={activeLetter}
           key={letter + index}
           letter={letter}
+          doneLetters={doneLetters}
         />
       ))}
     </div>
