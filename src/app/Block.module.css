@@ -12,9 +12,17 @@
   align-items: center;
   justify-content: center;
   border-radius: 0.1rem;
+  box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.active {
+  color: var(--white);
+  background: #eebf50;
 }
 
 .placeholder {
   opacity: 0;
-  order: -1;
+  /* order: -1; */
+  cursor: default;
 }

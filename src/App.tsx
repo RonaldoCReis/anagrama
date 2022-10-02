@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import styles from './App.module.css';
 import Column from './app/Column';
@@ -10,17 +11,30 @@ words.forEach((word) => {
   letters.forEach((letter, index) => {
     if (!anagrams[index].includes(letter)) anagrams[index] += letter;
     else anagrams[index] += '$';
+    // anagrams[index] += letter;
   });
 });
 
 console.log(anagrams);
 function App() {
+  const [selectedWord, setSelectedWord] = React.useState<string[]>(
+    new Array(5).fill('')
+  );
   return (
-    <main className={styles.main}>
-      {anagrams.map((anagram) => (
-        <Column key={anagram} word={anagram} />
-      ))}
-    </main>
+    <form className={styles.form}>
+      <main className={styles.main}>
+        {anagrams.map((anagram, index) => (
+          <Column
+            columnIndex={index}
+            key={anagram}
+            word={anagram}
+            setSelectedWord={setSelectedWord}
+            selectedWord={selectedWord}
+          />
+        ))}
+      </main>
+      {/* <button className={styles.button}>Enviar</button> */}
+    </form>
   );
 }
 
