@@ -36,7 +36,8 @@
 }
 
 .displayBlock {
-  background: #bbb;
+  border: 0.4rem solid #999;
+  background: #ccc;
   transition: 0.4s;
 }
 

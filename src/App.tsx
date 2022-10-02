@@ -21,13 +21,17 @@ function App() {
     new Array(5).fill('')
   );
   const [doneLetters, setDoneLetters] = React.useState('');
-  const [doneWords, setDoneWords] = React.useState([]);
+  const [doneWords, setDoneWords] = React.useState<string[]>();
 
   function submitTry(): void {
     const finalWord = selectedWord.join('');
     words.forEach((word) => {
       if (word === finalWord) {
         setDoneLetters(doneLetters + word);
+        if (doneWords && !doneWords.includes(word))
+          setDoneWords([...doneWords, word]);
+        else setDoneWords([word]);
+
         // setDoneWords([...doneWords])
       }
       console.log(doneLetters);
@@ -55,6 +59,12 @@ function App() {
           />
         ))}
       </main>
+      <aside className={styles.aside}>
+        <h2>Palavras descobertas {doneWords ? doneWords.length : '0'} / 5</h2>
+        <ul className={styles.list}>
+          {doneWords && doneWords.map((word) => <li>{word}</li>)}
+        </ul>
+      </aside>
     </form>
   );
 }

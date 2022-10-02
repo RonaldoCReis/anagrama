@@ -21,6 +21,9 @@ const Column = ({
   const [activeLetter, setActiveLetter] = React.useState<null | string>(null);
   // let letters: string[];
   const [letters, setLetters] = React.useState(word.split(''));
+  const [columnDone, setColumnDone] = React.useState<string[]>(
+    new Array(5).fill('')
+  );
 
   function shuffleArray(array: string[]) {
     for (var i = array.length - 1; i > 0; i--) {
@@ -58,7 +61,7 @@ const Column = ({
     <div className={styles.Column}>
       <div
         className={`${blockStyle.block} ${blockStyle.displayBlock} ${
-          activeLetter && doneLetters.includes(activeLetter) && blockStyle.done
+          activeLetter && columnDone.includes(activeLetter) && blockStyle.done
         }`}
         onClick={() => setActiveLetter('')}
       >
@@ -71,6 +74,7 @@ const Column = ({
           key={letter + index}
           letter={letter}
           doneLetters={doneLetters}
+          setColumnDone={setColumnDone}
         />
       ))}
     </div>
