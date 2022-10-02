@@ -3,7 +3,7 @@ import './App.css';
 import styles from './App.module.css';
 import Column from './app/Column';
 
-const words = ['banco', 'risco', 'pinta', 'poste', 'beber'];
+const words = ['carro', 'busca', 'plano', 'fraco', 'ligar'];
 let anagrams: string[] = new Array(5).fill('');
 
 words.forEach((word) => {
@@ -44,28 +44,31 @@ function App() {
     }
   }, [selectedWord]);
   return (
-    <form className={styles.form}>
-      {/* <button className={styles.button}>Enviar</button> */}
+    <>
+      <h1 className={styles.title}>Anagrama</h1>
+      <div className={styles.form}>
+        {/* <button className={styles.button}>Enviar</button> */}
 
-      <main className={styles.main}>
-        {anagrams.map((anagram, index) => (
-          <Column
-            columnIndex={index}
-            key={anagram}
-            word={anagram}
-            setSelectedWord={setSelectedWord}
-            selectedWord={selectedWord}
-            doneLetters={doneLetters}
-          />
-        ))}
-      </main>
-      <aside className={styles.aside}>
-        <h2>Palavras descobertas {doneWords ? doneWords.length : '0'} / 5</h2>
-        <ul className={styles.list}>
-          {doneWords && doneWords.map((word) => <li>{word}</li>)}
-        </ul>
-      </aside>
-    </form>
+        <main className={styles.main}>
+          {anagrams.map((anagram, index) => (
+            <Column
+              columnIndex={index}
+              key={anagram}
+              word={anagram}
+              setSelectedWord={setSelectedWord}
+              selectedWord={selectedWord}
+              doneLetters={doneLetters}
+            />
+          ))}
+        </main>
+        <aside className={styles.aside}>
+          <h2>Palavras descobertas {doneWords ? doneWords.length : '0'} / 5</h2>
+          <ul className={styles.list}>
+            {doneWords && doneWords.map((word) => <li>{word}</li>)}
+          </ul>
+        </aside>
+      </div>
+    </>
   );
 }
 

@@ -2,12 +2,12 @@
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: var(--black);
-  font-size: 3rem;
+  font-size: var(--fontSize);
   text-transform: uppercase;
   margin: var(--spacing) 0;
   background: var(--white);
-  width: 5rem;
-  height: 5rem;
+  width: var(--blockSize);
+  height: var(--blockSize);
   display: flex;
   align-items: center;
   justify-content: center;
