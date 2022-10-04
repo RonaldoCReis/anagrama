@@ -28,7 +28,7 @@ const Block = ({
   return (
     <div
       className={`${styles.block} ${letter === '$' ? styles.placeholder : ''} 
-      ${activeLetter === letter ? styles.placeholder : ''} 
+      ${activeLetter === letter ? styles.hide : ''} 
       ${isLetterDone ? styles.done : ''}`}
       onClick={() => setActiveLetter(letter)}
     >

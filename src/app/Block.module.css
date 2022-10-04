@@ -16,6 +16,7 @@
   cursor: pointer;
   position: relative;
   /* transition: 0.3s; */
+  /* animation: showTop 0.2s forwards; */
 }
 
 .active {
@@ -41,7 +42,54 @@
   transition: 0.4s;
 }
 
+.displayActive {
+  animation: show 0.2s forwards;
+}
+
+@keyframes show {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes showTop {
+  from {
+    transform: translateY(-10px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+
 .done {
   background: #55ee50;
   color: var(--black);
+}
+
+.hide {
+  cursor: default;
+  pointer-events: none;
+  animation: hide 0.2s forwards linear;
+  /* display: none; */
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+    position: absolute;
+  }
 }

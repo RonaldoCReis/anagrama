@@ -3,8 +3,8 @@ import './App.css';
 import styles from './App.module.css';
 import Column from './app/Column';
 
-const words = ['carro', 'busca', 'plano', 'fraco', 'ligar'];
-let anagrams: string[] = new Array(5).fill('');
+const words = ['moral', 'feliz', 'fluxo', 'favor', 'passo'];
+let anagrams: string[] = new Array(words[0].length).fill('');
 
 words.forEach((word) => {
   const letters = word.split('');
@@ -18,7 +18,7 @@ words.forEach((word) => {
 console.log(anagrams);
 function App() {
   const [selectedWord, setSelectedWord] = React.useState<string[]>(
-    new Array(5).fill('')
+    new Array(words[0].length).fill('')
   );
   const [doneLetters, setDoneLetters] = React.useState('');
   const [doneWords, setDoneWords] = React.useState<string[]>();
@@ -39,7 +39,7 @@ function App() {
   }
 
   React.useEffect(() => {
-    if (selectedWord.join('').length === 5) {
+    if (selectedWord.join('').length === words[0].length) {
       submitTry();
     }
   }, [selectedWord]);
@@ -62,7 +62,10 @@ function App() {
           ))}
         </main>
         <aside className={styles.aside}>
-          <h2>Palavras descobertas {doneWords ? doneWords.length : '0'} / 5</h2>
+          <h2>
+            Palavras descobertas {doneWords ? doneWords.length : '0'} /{' '}
+            {words.length}
+          </h2>
           <ul className={styles.list}>
             {doneWords && doneWords.map((word) => <li>{word}</li>)}
           </ul>
